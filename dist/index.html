@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Remote ID Flood Detector</title>
+<meta name="description" content="In-browser demo: generate a Remote ID spoofing flood with one real drone hidden in it, then watch the receive-only detector find the real track. Analysis only, no radio." />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>%F0%9F%9B%B0</text></svg>" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<main>
+  <header class="head">
+    <h1>Remote ID flood detector</h1>
+    <p class="sub">
+      A counter-drone sensor has decoded every Remote ID broadcast in the air.
+      Hundreds are fakes from one spoofing tool. One is a real drone. This page
+      generates that flood in your browser, runs the receive-only detector over
+      it, and points at the single real track, with the reasons it was chosen.
+    </p>
+    <p class="prov">
+      Flood built by <code>remoteid-scenario</code> &middot; decoded by
+      <code>remoteid</code> &middot; graded by <code>remoteid-sentinel</code>,
+      compiled to WebAssembly. Runs entirely offline in this tab. No radio, no
+      network, no transmit path: this is analysis of decoded data only.
+    </p>
+  </header>
+
+  <section class="controls">
+    <label class="fakes">
+      Fake broadcasters
+      <select id="count">
+        <option value="100">100</option>
+        <option value="250">250</option>
+        <option value="500" selected>500</option>
+        <option value="1000">1000</option>
+      </select>
+    </label>
+    <button id="run" type="button">Simulate a spoofing flood</button>
+    <span id="status" class="status"></span>
+  </section>
+
+  <section class="stage" aria-live="polite">
+    <div class="scope-wrap">
+      <canvas id="scope" width="720" height="520"></canvas>
+      <div id="legend" class="legend" hidden>
+        <span class="k real">Real drone</span>
+        <span class="k fake">Fake broadcast</span>
+        <span class="k path">Real flight path</span>
+      </div>
+    </div>
+
+    <aside id="panel" class="panel" hidden>
+      <div class="verdict" id="verdict"></div>
+      <div class="real-card" id="realcard"></div>
+      <div class="sigs" id="sigs"></div>
+    </aside>
+  </section>
+
+  <footer class="foot">
+    <p>
+      Every number on this page comes from the real crates, run on real decoded
+      frames. The fakes are spec-compliant Remote ID messages written to memory,
+      never to a radio. Open source:
+      <a href="https://github.com/Mattbusel/remoteid" target="_blank" rel="noopener">remoteid</a>,
+      <a href="https://github.com/Mattbusel/remoteid-sentinel" target="_blank" rel="noopener">remoteid-sentinel</a>,
+      <a href="https://github.com/Mattbusel/remoteid-scenario" target="_blank" rel="noopener">remoteid-scenario</a>.
+    </p>
+  </footer>
+</main>
+<script type="module" src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+[package]
+name = "remoteid-web"
+version = "0.1.0"
+authors = ["Matt Busel <matt@busel.dev>"]
+edition = "2021"
+rust-version = "1.70"
+description = "Browser (wasm) demo of the receive-only Remote ID flood and spoof detector: generate a spoofing flood with one real drone hidden in it, then watch remoteid-sentinel find the real track. Analysis only, no radio and no transmit path."
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/Mattbusel/remoteid-web"
+keywords = ["remote-id", "drone", "counter-uas", "spoofing", "wasm"]
+categories = ["aerospace::drones", "wasm"]
+publish = false
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+remoteid = { version = "0.3.3", default-features = false, features = ["std"] }
+remoteid-scenario = "0.1.0"
+remoteid-sentinel = "0.1.0"
+wasm-bindgen = "=0.2.129"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+[profile.release]
+opt-level = "s"
+lto = true
+codegen-units = 1
+panic = "abort"
