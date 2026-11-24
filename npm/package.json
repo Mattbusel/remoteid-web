@@ -1,0 +1,37 @@
+{
+  "name": "remoteid-web",
+  "version": "0.2.0",
+  "description": "Drone Remote ID (ASTM F3411 / EN 4709-002) capture analysis in the browser and Node: decodes pcap, pcapng and RIDF captures and reports per-transmitter trust verdicts (spoofing, plausibility) from the Rust remoteid crates, compiled to WebAssembly.",
+  "type": "module",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "remoteid_web.js",
+    "remoteid_web.d.ts",
+    "remoteid_web_bg.wasm",
+    "remoteid_web_bg.wasm.d.ts",
+    "README.md",
+    "LICENSE-MIT",
+    "LICENSE-APACHE"
+  ],
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mattbusel/remoteid-web.git"
+  },
+  "keywords": [
+    "remote-id",
+    "drone",
+    "uas",
+    "opendroneid",
+    "astm-f3411",
+    "spoofing",
+    "counter-uas",
+    "mavlink",
+    "wasm"
+  ],
+  "author": "Matt Busel <matt@busel.dev>",
+  "license": "MIT OR Apache-2.0"
+}
